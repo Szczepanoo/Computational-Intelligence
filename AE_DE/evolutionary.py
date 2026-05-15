@@ -98,7 +98,8 @@ def evolutionary_algorithm(func, dimensions, bounds, pop_size=50, generations=10
 
         best_solution = population[best_index]
 
-        print(f"Generation {generation+1} | " f"Best: {best:.8f} | " f"Mean: {mean:.8f}")
+        if (generation % 10 == 0):
+            print(f"Generation {generation} | Best: {best:.8f} | Mean: {mean:.8f}")
 
     return {
         "best_solution": best_solution,
