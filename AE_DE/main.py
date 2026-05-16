@@ -1,49 +1,74 @@
-from functions import FUNCTIONS
+from functions import FUNCTIONS, sphere, griewank, rastrigin
 from evolutionary import evolutionary_algorithm
 from differential import differential_evolution
+from visualization import plot_convergence, plot_population_3d, animate_population, visualize_population_steps
 
-print("Evolutionary algorithm")
+for f in FUNCTIONS:
+    FUNCTION = FUNCTIONS[f]
 
-for name, func in FUNCTIONS.items():
+    print("Evolutionary algorithm")
+
     print("\n" + "=" * 50)
-    print("Function:",name)
+    print("Function: sphere")
     print("")
-    result = evolutionary_algorithm(
-        func=func,
-        dimensions=30,
-        bounds=(-5, 5),
-        pop_size=50,
-        generations=100
+    ea_result = evolutionary_algorithm(
+        func=FUNCTION,
+        dimensions=2,
+        bounds=(-10, 10),
+        pop_size=10,
+        generations=20
     )
 
     print("Best fitness:")
-    print(result["best_fitness"])
+    print(ea_result["best_fitness"])
 
     print("\nBest solution:")
-    print(result["best_solution"])
+    print(ea_result["best_solution"])
 
-print()
-print()
-print()
-print()
-print()
-print("Differential evolution")
-print()
 
-for name, func in FUNCTIONS.items():
+    last_population = ea_result["population"]
+
+    # plot_population_3d(
+    #     sphere,
+    #     last_population,
+    #     (-5, 5)
+    # )
+
+    visualize_population_steps(
+        FUNCTION,
+        ea_result["history"],
+        (-10, 10)
+    )
+
+
+    print()
+    print()
+    print()
+    print()
+    print()
+    print("Differential evolution")
+    print()
+
     print("\n" + "=" * 50)
-    print("Function:",name)
+    print("Function: sphere")
     print("")
-    result = differential_evolution(
-        func=func,
-        dimensions=30,
+    de_result = differential_evolution(
+        func=FUNCTION,
+        dimensions=2,
         bounds=(-5, 5),
-        pop_size=50,
-        generations=100
+        pop_size=10,
+        generations=20
     )
 
     print("Best fitness:")
-    print(result["best_fitness"])
+    print(de_result["best_fitness"])
 
     print("\nBest solution:")
-    print(result["best_solution"])
+    print(de_result["best_solution"])
+
+
+    visualize_population_steps(
+        FUNCTION,
+        de_result["history"],
+        (-10, 10)
+    )

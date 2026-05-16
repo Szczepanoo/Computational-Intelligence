@@ -45,10 +45,7 @@ def mutate(individual, mutation_rate, mutation_strength):
 
     for i in range(len(mutated)):
         if np.random.rand() < mutation_rate:
-            mutated[i] += np.random.normal(
-                0,
-                mutation_strength
-            )
+            mutated[i] += np.random.normal(0, mutation_strength)
 
     return mutated
 
@@ -59,18 +56,11 @@ def evolutionary_algorithm(func, dimensions, bounds, pop_size=50, generations=10
     population = initialize_population(pop_size, dimensions, bounds)
     history = []
 
-    for generation in range(generations):
+    for generation in range(1, generations + 1):
         fitness = evaluate_population(population, func)
         best = np.min(fitness)
         mean = np.mean(fitness)
         worst = np.max(fitness)
-
-        history.append({
-            "generation": generation,
-            "best": best,
-            "mean": mean,
-            "worst": worst
-        })
 
         elite_indices = np.argsort(fitness)[:elite_size]
 
@@ -97,6 +87,14 @@ def evolutionary_algorithm(func, dimensions, bounds, pop_size=50, generations=10
         best_index = np.argmin(final_fitness)
 
         best_solution = population[best_index]
+
+        history.append({
+            "generation": generation,
+            "best": best,
+            "mean": mean,
+            "worst": worst,
+            "population": population.copy()
+        })
 
         if (generation % 10 == 0):
             print(f"Generation {generation} | Best: {best:.8f} | Mean: {mean:.8f}")

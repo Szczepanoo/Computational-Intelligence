@@ -24,20 +24,13 @@ def differential_evolution(func, dimensions, bounds, pop_size=50,
 
     history = []
 
-    for generation in range(generations):
+    for generation in range(1, generations+1):
 
         fitness = evaluate_population(population, func)
 
         best = np.min(fitness)
         mean = np.mean(fitness)
         worst = np.max(fitness)
-
-        history.append({
-            "generation": generation,
-            "best": best,
-            "mean": mean,
-            "worst": worst
-        })
 
         new_population = []
 
@@ -76,6 +69,14 @@ def differential_evolution(func, dimensions, bounds, pop_size=50,
 
         if (generation % 10 == 0):
             print(f"Generation {generation} | Best: {best:.8f} | Mean: {mean:.8f}")
+
+        history.append({
+            "generation": generation,
+            "best": best,
+            "mean": mean,
+            "worst": worst,
+            "population": population.copy()
+        })
 
     final_fitness = evaluate_population(population, func)
 
