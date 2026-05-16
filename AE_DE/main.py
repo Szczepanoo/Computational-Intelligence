@@ -31,7 +31,8 @@ for f in FUNCTIONS:
     visualize_population_steps(
         FUNCTION,
         ae_result["history"],
-        (-10, 10)
+        (-10, 10),
+        "Evolutionary algorithm"
     )
 
 
@@ -44,7 +45,7 @@ for f in FUNCTIONS:
     print()
 
     print("\n" + "=" * 50)
-    print("Function: sphere")
+    print(f"Function: {FUNCTION.__name__}")
     print("")
     de_result = differential_evolution(
         func=FUNCTION,
@@ -64,5 +65,6 @@ for f in FUNCTIONS:
     visualize_population_steps(
         FUNCTION,
         de_result["history"],
-        (-10, 10)
+        (-10, 10),
+        "Differential evolution"
     )

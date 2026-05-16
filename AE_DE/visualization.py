@@ -81,7 +81,7 @@ def plot_population_3d(func, population, bounds):
     fig.show()
     
 
-def visualize_population_steps(func, history, bounds):
+def visualize_population_steps(func, history, bounds, algorithm):
 
     x = np.linspace(bounds[0], bounds[1], 100)
     y = np.linspace(bounds[0], bounds[1], 100)
@@ -144,14 +144,7 @@ def visualize_population_steps(func, history, bounds):
 
         step = dict(
             method="update",
-            args=[
-                {
-                    "visible": visible
-                },
-                {
-                    "title": f"Generation {i}"
-                }
-            ],
+            args=[{"visible": visible}],
             label=str(i)
         )
 
@@ -164,6 +157,7 @@ def visualize_population_steps(func, history, bounds):
     )]
 
     fig.update_layout(
+        title=f"{algorithm} - {func.__name__} function",
         sliders=sliders,
         scene=dict(
             xaxis_title="X1",
