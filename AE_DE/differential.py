@@ -68,7 +68,7 @@ def differential_evolution(func, dimensions, bounds, pop_size=50,
         population = np.array(new_population)
 
         if (generation % 10 == 0):
-            print(f"Generation {generation} | Best: {best:.8f} | Mean: {mean:.8f}")
+            print(f"Generation {generation} | Best: {best:.8f} | Worst: {worst:.8f} | Mean: {mean:.8f}")
 
         history.append({
             "generation": generation,

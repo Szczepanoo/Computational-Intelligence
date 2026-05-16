@@ -98,7 +98,6 @@ def visualize_population_steps(func, history, bounds):
 
     fig = go.Figure()
 
-    # surface
     fig.add_trace(
         go.Surface(
             x=X,
@@ -109,7 +108,6 @@ def visualize_population_steps(func, history, bounds):
         )
     )
 
-    # wszystkie klatki jako traces
     for i, step in enumerate(history):
 
         population = step["population"]
@@ -136,7 +134,6 @@ def visualize_population_steps(func, history, bounds):
             )
         )
 
-    # slider
     steps = []
 
     for i in range(len(history)):

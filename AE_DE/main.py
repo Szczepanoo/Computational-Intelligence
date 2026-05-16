@@ -1,7 +1,7 @@
-from functions import FUNCTIONS, sphere, griewank, rastrigin
+from functions import FUNCTIONS
 from evolutionary import evolutionary_algorithm
 from differential import differential_evolution
-from visualization import plot_convergence, plot_population_3d, animate_population, visualize_population_steps
+from visualization import visualize_population_steps
 
 for f in FUNCTIONS:
     FUNCTION = FUNCTIONS[f]
@@ -11,7 +11,7 @@ for f in FUNCTIONS:
     print("\n" + "=" * 50)
     print("Function: sphere")
     print("")
-    ea_result = evolutionary_algorithm(
+    ae_result = evolutionary_algorithm(
         func=FUNCTION,
         dimensions=2,
         bounds=(-10, 10),
@@ -20,23 +20,17 @@ for f in FUNCTIONS:
     )
 
     print("Best fitness:")
-    print(ea_result["best_fitness"])
+    print(ae_result["best_fitness"])
 
     print("\nBest solution:")
-    print(ea_result["best_solution"])
+    print(ae_result["best_solution"])
 
 
-    last_population = ea_result["population"]
-
-    # plot_population_3d(
-    #     sphere,
-    #     last_population,
-    #     (-5, 5)
-    # )
+    last_population = ae_result["population"]
 
     visualize_population_steps(
         FUNCTION,
-        ea_result["history"],
+        ae_result["history"],
         (-10, 10)
     )
 

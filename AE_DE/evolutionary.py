@@ -32,10 +32,7 @@ def tournament_selection(population, fitness, k=3):
 def crossover(parent1, parent2):
     alpha = np.random.rand()
 
-    child = (
-        alpha * parent1 +
-        (1 - alpha) * parent2
-    )
+    child = (alpha * parent1 + (1 - alpha) * parent2)
 
     return child
 
@@ -97,7 +94,7 @@ def evolutionary_algorithm(func, dimensions, bounds, pop_size=50, generations=10
         })
 
         if (generation % 10 == 0):
-            print(f"Generation {generation} | Best: {best:.8f} | Mean: {mean:.8f}")
+            print(f"Generation {generation} | Best: {best:.8f} | Worst: {worst:.8f} | Mean: {mean:.8f}")
 
     return {
         "best_solution": best_solution,

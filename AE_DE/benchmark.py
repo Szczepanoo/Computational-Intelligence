@@ -1,15 +1,18 @@
-from functions import FUNCTIONS, sphere
+from functions import FUNCTIONS
 from evolutionary import evolutionary_algorithm
 from differential import differential_evolution
-from visualization import plot_convergence, plot_population_3d, animate_population, visualize_population_steps
+from report import generate_reports, finalize_summary
 
-print("Evolutionary algorithm")
+summary_rows = []
 
 for name, func in FUNCTIONS.items():
+
     print("\n" + "=" * 50)
-    print("Function:",name)
-    print("")
-    ea_result = evolutionary_algorithm(
+    print("Function:", name)
+    print()
+    print("Evolutionary algorithm")
+    print()
+    ae_result = evolutionary_algorithm(
         func=func,
         dimensions=50,
         bounds=(-5, 5),
@@ -18,24 +21,15 @@ for name, func in FUNCTIONS.items():
     )
 
     print("Best fitness:")
-    print(ea_result["best_fitness"])
+    print(ae_result["best_fitness"])
 
     print("\nBest solution:")
-    print(ea_result["best_solution"])
+    print(ae_result["best_solution"])
 
+    print()
+    print("Differential Evolution...")
+    print()
 
-print()
-print()
-print()
-print()
-print()
-print("Differential evolution")
-print()
-
-for name, func in FUNCTIONS.items():
-    print("\n" + "=" * 50)
-    print("Function:",name)
-    print("")
     de_result = differential_evolution(
         func=func,
         dimensions=50,
@@ -49,3 +43,17 @@ for name, func in FUNCTIONS.items():
 
     print("\nBest solution:")
     print(de_result["best_solution"])
+
+    generate_reports(
+        function_name=name,
+        ae_result=ae_result,
+        de_result=de_result,
+        summary_rows=summary_rows
+    )
+
+finalize_summary(summary_rows)
+
+print()
+print("=" * 50)
+print("All reports generated.")
+print("=" * 50)
