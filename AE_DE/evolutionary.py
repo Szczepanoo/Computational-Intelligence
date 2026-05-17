@@ -3,26 +3,15 @@ import numpy as np
 def initialize_population(pop_size, dimensions, bounds):
     low, high = bounds
 
-    return np.random.uniform(
-        low,
-        high,
-        (pop_size, dimensions)
-    )
+    return np.random.uniform(low, high, (pop_size, dimensions))
 
 
 def evaluate_population(population, func):
-    return np.array([
-        func(individual)
-        for individual in population
-    ])
+    return np.array([func(individual) for individual in population])
 
 
 def tournament_selection(population, fitness, k=3):
-    indices = np.random.choice(
-        len(population),
-        k,
-        replace=False
-    )
+    indices = np.random.choice(len(population), k, replace=False)
 
     best_idx = indices[np.argmin(fitness[indices])]
 

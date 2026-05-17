@@ -55,8 +55,7 @@ class Visualizer:
 
         plt.scatter(route_x, route_y, s=10)
 
-        plt.title(f"{title}\n"
-            f"Distance: {distance}")
+        plt.title(f"{title}\nDistance: {distance}")
 
         plt.xlabel("X")
         plt.ylabel("Y")
@@ -69,8 +68,7 @@ class Visualizer:
 
             plt.savefig(filename, dpi=300)
 
-            print(f"\nZapisano trasę: "
-                f"{filename}")
+            print(f"\nZapisano trasę: {filename}")
 
         plt.show()
 

@@ -38,7 +38,6 @@ def calculate_route_distance(route: list[int],distance_matrix: DistanceMatrix) -
 
         total_distance += distance_matrix.get_distance(city_a, city_b)
 
-    # Domknięcie cyklu
     total_distance += distance_matrix.get_distance(route[-1], route[0])
 
     return total_distance
@@ -56,4 +55,3 @@ def print_route(route: list[int], max_cities: int = 20) -> None:
     else:
         preview = route[:max_cities]
         print(f"{preview} ...")
-

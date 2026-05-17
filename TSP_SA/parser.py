@@ -97,16 +97,12 @@ class TSPParser:
         data_folder = Path(data_folder)
 
         if not data_folder.exists():
-            raise FileNotFoundError(
-                f"Folder nie istnieje: {data_folder}"
-            )
+            raise FileNotFoundError(f"Folder nie istnieje: {data_folder}")
 
         tsp_files = sorted(data_folder.glob("*.tsp"))
 
         if not tsp_files:
-            raise ValueError(
-                f"Nie znaleziono plików .tsp w folderze: {data_folder}"
-            )
+            raise ValueError(f"Nie znaleziono plików .tsp w folderze: {data_folder}")
 
         instances = []
 

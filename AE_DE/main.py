@@ -68,3 +68,4 @@ for f in FUNCTIONS:
         (-10, 10),
         "Differential evolution"
     )
+    

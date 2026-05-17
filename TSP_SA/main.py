@@ -32,13 +32,9 @@ for tsp in datasets:
 
     sa = SimulatedAnnealing(
         distance_matrix=matrix,
-
         initial_temperature=10000,
-
         cooling_rate=0.995,
-
         minimum_temperature=0.01,
-
         iterations_per_temperature=100
     )
 

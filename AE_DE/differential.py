@@ -3,18 +3,11 @@ import numpy as np
 def initialize_population(pop_size, dimensions, bounds):
     low, high = bounds
 
-    return np.random.uniform(
-        low,
-        high,
-        (pop_size, dimensions)
-    )
+    return np.random.uniform(low, high, (pop_size, dimensions))
 
 
 def evaluate_population(population, func):
-    return np.array([
-        func(individual)
-        for individual in population
-    ])
+    return np.array([func(individual) for individual in population])
 
 
 def differential_evolution(func, dimensions, bounds, pop_size=50,

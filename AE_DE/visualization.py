@@ -5,15 +5,9 @@ import plotly.graph_objects as go
 
 def plot_convergence(ae_history, de_history, function_name):
 
-    ae_best = [
-        h["best"]
-        for h in ae_history
-    ]
+    ae_best = [h["best"] for h in ae_history]
 
-    de_best = [
-        h["best"]
-        for h in de_history
-    ]
+    de_best = [h["best"] for h in de_history]
 
     plt.figure(figsize=(10, 6))
 
@@ -23,9 +17,7 @@ def plot_convergence(ae_history, de_history, function_name):
     plt.xlabel("Generation")
     plt.ylabel("Best fitness")
 
-    plt.title(
-        f"Convergence - {function_name}"
-    )
+    plt.title(f"Convergence - {function_name}")
 
     plt.legend()
 
@@ -41,32 +33,16 @@ def plot_population_3d(func, population, bounds):
 
     X, Y = np.meshgrid(x, y)
 
-    Z = np.array([
-        [
-            func(np.array([x1, x2]))
-            for x1 in x
-        ]
-        for x2 in y
-    ])
+    Z = np.array([[func(np.array([x1, x2])) for x1 in x] for x2 in y])
 
     pop_x = population[:, 0]
     pop_y = population[:, 1]
 
-    pop_z = np.array([
-        func(np.array([x1, x2]))
-        for x1, x2 in zip(pop_x, pop_y)
-    ])
+    pop_z = np.array([func(np.array([x1, x2])) for x1, x2 in zip(pop_x, pop_y)])
 
     fig = go.Figure()
 
-    fig.add_trace(
-        go.Surface(
-            x=X,
-            y=Y,
-            z=Z,
-            opacity=0.7
-        )
-    )
+    fig.add_trace(go.Surface(x=X, y=Y, z=Z, opacity=0.7))
 
     fig.add_trace(
         go.Scatter3d(
@@ -88,13 +64,7 @@ def visualize_population_steps(func, history, bounds, algorithm):
 
     X, Y = np.meshgrid(x, y)
 
-    Z = np.array([
-        [
-            func(np.array([x1, x2]))
-            for x1 in x
-        ]
-        for x2 in y
-    ])
+    Z = np.array([[func(np.array([x1, x2])) for x1 in x] for x2 in y])
 
     fig = go.Figure()
 
@@ -115,10 +85,7 @@ def visualize_population_steps(func, history, bounds, algorithm):
         pop_x = population[:, 0]
         pop_y = population[:, 1]
 
-        pop_z = np.array([
-            func(np.array([x1, x2]))
-            for x1, x2 in zip(pop_x, pop_y)
-        ])
+        pop_z = np.array([func(np.array([x1, x2])) for x1, x2 in zip(pop_x, pop_y)])
 
         visible = (i == 0)
 
@@ -142,11 +109,7 @@ def visualize_population_steps(func, history, bounds, algorithm):
 
         visible[i + 1] = True
 
-        step = dict(
-            method="update",
-            args=[{"visible": visible}],
-            label=str(i)
-        )
+        step = dict(method="update", args=[{"visible": visible}], label=str(i))
 
         steps.append(step)
 
@@ -167,3 +130,4 @@ def visualize_population_steps(func, history, bounds, algorithm):
     )
 
     fig.show()
+    

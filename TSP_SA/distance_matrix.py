@@ -19,10 +19,7 @@ class DistanceMatrix:
 
         size = self.dimension
 
-        matrix = [
-            [0 for _ in range(size)]
-            for _ in range(size)
-        ]
+        matrix = [[0 for _ in range(size)] for _ in range(size)]
 
         for i in range(size):
 
@@ -32,23 +29,14 @@ class DistanceMatrix:
 
                 _, x2, y2 = self.coordinates[j]
 
-                distance = self._calculate_distance(
-                    x1, y1,
-                    x2, y2
-                )
+                distance = self._calculate_distance(x1, y1, x2, y2)
 
                 matrix[i][j] = distance
                 matrix[j][i] = distance
 
         return matrix
 
-    def _calculate_distance(
-        self,
-        x1: float,
-        y1: float,
-        x2: float,
-        y2: float
-    ) -> int:
+    def _calculate_distance(self, x1: float, y1: float, x2: float, y2: float) -> int:
 
         if self.edge_weight_type == "EUC_2D":
             return self._euclidean_distance(x1, y1, x2, y2)
@@ -57,40 +45,22 @@ class DistanceMatrix:
             return self._att_distance(x1, y1, x2, y2)
 
         else:
-            raise ValueError(
-                f"Nieobsługiwany typ odległości: "
-                f"{self.edge_weight_type}"
-            )
+            raise ValueError(f"Nieobsługiwany typ odległości: {self.edge_weight_type}")
 
     @staticmethod
-    def _euclidean_distance(
-        x1: float,
-        y1: float,
-        x2: float,
-        y2: float
-    ) -> int:
+    def _euclidean_distance(x1: float,y1: float,x2: float,y2: float) -> int:
 
-        distance = math.sqrt(
-            (x1 - x2) ** 2 +
-            (y1 - y2) ** 2
-        )
+        distance = math.sqrt((x1 - x2) ** 2 +(y1 - y2) ** 2)
 
         return round(distance)
 
     @staticmethod
-    def _att_distance(
-        x1: float,
-        y1: float,
-        x2: float,
-        y2: float
-    ) -> int:
+    def _att_distance(x1: float, y1: float, x2: float, y2: float) -> int:
 
         dx = x1 - x2
         dy = y1 - y2
 
-        rij = math.sqrt(
-            (dx * dx + dy * dy) / 10.0
-        )
+        rij = math.sqrt((dx * dx + dy * dy) / 10.0)
 
         tij = round(rij)
 
@@ -110,8 +80,7 @@ class DistanceMatrix:
         print(f"Dataset: {self.name}")
         print(f"Liczba miast: {self.dimension}")
         print(f"Typ odległości: {self.edge_weight_type}")
-        print(f"Rozmiar macierzy: "
-              f"{self.dimension} x {self.dimension}")
+        print(f"Rozmiar macierzy: {self.dimension} x {self.dimension}")
 
     def print_sample(self, size: int = 5) -> None:
 

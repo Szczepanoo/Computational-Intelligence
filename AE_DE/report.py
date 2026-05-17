@@ -41,15 +41,9 @@ def generate_reports(function_name, ae_result, de_result, summary_rows):
 
     create_results_directories()
 
-    save_history_to_csv(
-        ae_result["history"],
-        f"results/ae/{function_name}_ae.csv"
-    )
+    save_history_to_csv(ae_result["history"], f"results/ae/{function_name}_ae.csv")
 
-    save_history_to_csv(
-        de_result["history"],
-        f"results/de/{function_name}_de.csv"
-    )
+    save_history_to_csv(de_result["history"], f"results/de/{function_name}_de.csv")
 
     summary_rows.append({
         "function": function_name,
