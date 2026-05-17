@@ -13,14 +13,15 @@ class SimulatedAnnealing:
 
         self.distance_matrix = distance_matrix
         self.num_cities = distance_matrix.dimension
-
+        
         self.initial_temperature = initial_temperature
         self.cooling_rate = cooling_rate
         self.minimum_temperature = minimum_temperature
 
-        self.iterations_per_temperature = (
-            iterations_per_temperature
-        )
+        self.iterations_per_temperature = iterations_per_temperature
+
+        self.routes_history = []
+        self.distances_history = []
 
         self.history = {"iteration": [], "temperature": [], 
                         "current_distance": [],"best_distance": []}
@@ -97,6 +98,11 @@ class SimulatedAnnealing:
 
                 self.save_history(iteration, temperature, current_distance, best_distance)
 
+                if iteration % 100 == 0:
+                    self.routes_history.append(best_route.copy())
+
+                    self.distances_history.append(best_distance)
+
                 if iteration % 1000 == 0:
 
                     print(f"Iteracja: {iteration:>7} | T: {temperature:>10.4f} | "
@@ -118,3 +124,8 @@ class SimulatedAnnealing:
     def get_history(self):
 
         return self.history
+    
+    
+    def get_routes_history(self):
+
+        return (self.routes_history, self.distances_history)
